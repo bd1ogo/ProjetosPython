@@ -30,10 +30,11 @@ pyautogui.press('tab')
 pyautogui.write('senhadificil123')
 #logar
 pyautogui.press('tab')
-pyautogui.press('enter')
+pyautogui.press('enter')                                                                                                                                                                                                                                                                                                                                                          
+
 
 #pausa maior para o site poder carregar com segurança
-time.sleep(3)
+time.sleep(3)                                                                                                                                                                           
 #Abrindo a base de dados (importar o arquivo .csv)
 tabela = pandas.read_csv('produtos.csv')
 
