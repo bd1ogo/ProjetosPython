@@ -13,3 +13,4 @@
 
 4. Projeto de Criação de Site/App
    Criação de um chat ao vivo para site e para app usando a ferramenta Flet, tanto front end como backend, feitos em Python.
+   Nescessário utilizar a chave da API, para funcionar corretamente.
