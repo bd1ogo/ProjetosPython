@@ -10,6 +10,9 @@
 #IA utilizada -> OpenAI
 
 import streamlit as st
+from openai import OpenAI 
+
+modelo_ia = OpenAI(api_key="API_chave")
 
 st.write("## FalsoGPT - Chatbot")
 
@@ -28,7 +31,11 @@ if texto_usuario:
     mensagem_usuario = {"role": "user", "content": texto_usuario}
     st.session_state["lista_mensagens"].append(mensagem_usuario)
 
-    resposta_ia = "Sua pergunta foi: " + texto_usuario
-    st.chat_message("assistant").write(resposta_ia)
-    mensagem_ia = {"role": "assistant", "content": resposta_ia}
+    resposta_ia = modelo_ia.chat.completions.create(
+        messages=st.session_state["lista_mensagens"],
+        model="gpt-4o",
+    )
+    texto_resposta_ia = resposta_ia.choices[0].message.content
+    st.chat_message("assistant").write(texto_resposta_ia)
+    mensagem_ia = {"role": "assistant", "content": texto_resposta_ia}
     st.session_state["lista_mensagens"].append(mensagem_ia)
