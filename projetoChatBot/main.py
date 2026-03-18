@@ -13,9 +13,22 @@ import streamlit as st
 
 st.write("## FalsoGPT - Chatbot")
 
+if not "lista_mensagens" in st.session_state:
+    st.session_state["lista_mensagens"] = []
+
 texto_usuario = st.chat_input("Digite sua mensagem...")
+
+for mensagem in st.session_state["lista_mensagens"]:
+    role = mensagem["role"]
+    content = mensagem["content"]
+    st.chat_message(role).write(content)
+
 if texto_usuario:
     st.chat_message("user").write(texto_usuario)
+    mensagem_usuario = {"role": "user", "content": texto_usuario}
+    st.session_state["lista_mensagens"].append(mensagem_usuario)
 
     resposta_ia = "Sua pergunta foi: " + texto_usuario
     st.chat_message("assistant").write(resposta_ia)
+    mensagem_ia = {"role": "assistant", "content": resposta_ia}
+    st.session_state["lista_mensagens"].append(mensagem_ia)
